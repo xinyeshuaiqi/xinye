@@ -1,6 +1,5 @@
-package pers.wmx.springbootfreemarkerdemo.domain;
+package pers.wmx.springbootfreemarkerdemo.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

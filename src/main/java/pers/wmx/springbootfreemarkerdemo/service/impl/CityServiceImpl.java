@@ -3,7 +3,7 @@ package pers.wmx.springbootfreemarkerdemo.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.wmx.springbootfreemarkerdemo.dao.CityMapper;
-import pers.wmx.springbootfreemarkerdemo.domain.City;
+import pers.wmx.springbootfreemarkerdemo.entity.City;
 import pers.wmx.springbootfreemarkerdemo.service.ICityService;
 
 import java.util.List;

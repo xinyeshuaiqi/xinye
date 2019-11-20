@@ -1,6 +1,6 @@
 package pers.wmx.springbootfreemarkerdemo.service;
 
-import pers.wmx.springbootfreemarkerdemo.domain.City;
+import pers.wmx.springbootfreemarkerdemo.entity.City;
 
 import java.util.List;
 
