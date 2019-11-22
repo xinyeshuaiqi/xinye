@@ -67,7 +67,13 @@
             <artifactId>jedis</artifactId>
         </dependency>
 
-        <!-- 等会示例会使用 fastjson 作为 JSON 序列化的工具 -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>3.11.3</version>
+        </dependency>
+
+      <!-- 等会示例会使用 fastjson 作为 JSON 序列化的工具 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -78,6 +84,12 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
         </dependency>
 
         <dependency>
