@@ -39,4 +39,13 @@ public interface PersonMapper {
 
     @Select("select * from  person")
     List<Person> select();
+
+
+    /**
+     * @param updatePerson    需更新到数据库的person
+     * @param conditionPerson 更新条件
+     * @return int
+     */
+    @UpdateProvider(type = PersonProvider.class,method = "updateByCondition")
+    int updateByCondition(@Param("up") Person updatePerson,@Param("cp") Person conditionPerson);
 }

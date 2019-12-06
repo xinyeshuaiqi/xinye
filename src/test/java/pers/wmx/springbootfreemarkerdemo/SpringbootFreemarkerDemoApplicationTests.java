@@ -1,6 +1,7 @@
 package pers.wmx.springbootfreemarkerdemo;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,20 @@ public class SpringbootFreemarkerDemoApplicationTests {
 
         int rst = personMapper.update(person1);
         System.out.println(rst);
+    }
+
+    @Test
+    public void testUpdateByCondition() {
+
+        Person personUpdate = new Person();
+        personUpdate.setName("新名字");
+        personUpdate.setAge(999);
+
+        Person personCondition = new Person();
+        personCondition.setId(5);
+
+        int rst = personMapper.updateByCondition(personUpdate,personCondition);
+        Assert.assertEquals(rst,1);
     }
 
 }

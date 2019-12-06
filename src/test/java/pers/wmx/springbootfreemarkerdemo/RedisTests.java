@@ -3,7 +3,6 @@ package pers.wmx.springbootfreemarkerdemo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataAccessException;
@@ -24,9 +23,6 @@ import java.util.List;
 public class RedisTests {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
-
-    @Autowired
-    RedissonClient redissonClient;
 
     @Test
     public void testString(){
