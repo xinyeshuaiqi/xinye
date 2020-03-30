@@ -103,4 +103,5 @@ public class SpringbootFreemarkerDemoApplicationTests {
         Assert.assertEquals(rst,1);
     }
 
+
 }
