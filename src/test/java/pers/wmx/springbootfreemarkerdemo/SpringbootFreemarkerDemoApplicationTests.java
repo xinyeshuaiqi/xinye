@@ -30,7 +30,7 @@ public class SpringbootFreemarkerDemoApplicationTests {
         try {
             rst = personMapper.insert(person);
         }catch (Exception e){
-            log.info("insert fail,person:{}",person.toString(),e);
+            //log.info("insert fail,person:{}",person.toString(),e);
         }
         System.out.println("rst:"+rst);
         System.out.println("id:"+person.getId());
@@ -59,7 +59,7 @@ public class SpringbootFreemarkerDemoApplicationTests {
         try {
             rst = personMapper.insertBatch(personList);
         }catch (Exception e){
-            log.info("insert fail,person:{}",personList,e);
+            //log.info("insert fail,person:{}",personList,e);
         }
         System.out.println("rst:"+rst);
     }
