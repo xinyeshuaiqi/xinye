@@ -1,7 +1,6 @@
 package pers.wmx.springbootfreemarkerdemo;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 /**
  * @author: wangmingxin03
@@ -10,19 +9,21 @@ import org.joda.time.LocalDateTime;
 public class TimeTest {
 
     public static void main(String[] args) {
-        DateTime nowTime= DateTime.now();
-
-        int year = nowTime.getYear();
-        System.out.println(year);
-        int weekYear = nowTime.getWeekyear();
-        System.out.println(weekYear);
-
-        System.out.println(nowTime.getWeekOfWeekyear());
-        System.out.println(nowTime.getDayOfWeek());
-        System.out.println(nowTime.getDayOfYear());
-
-        DateTime dateTime = new DateTime(
+        DateTime dateTime1 = new DateTime(
                 2019, //year
+                12,    // month
+                31,    // day
+                1,    // hour (midnight is zero)
+                0,    // minute
+                0,    // second
+                0     // milliseconds
+        );
+        System.out.println("2019.12.31");
+        System.out.println(dateTime1.getWeekyear());
+        System.out.println(dateTime1.getWeekOfWeekyear());
+
+        DateTime dateTime2 = new DateTime(
+                2020, //year
                 1,    // month
                 1,    // day
                 1,    // hour (midnight is zero)
@@ -30,11 +31,12 @@ public class TimeTest {
                 0,    // second
                 0     // milliseconds
         );
+        System.out.println("2020.1.1");
+        System.out.println(dateTime1.getWeekyear());
+        System.out.println(dateTime1.getWeekOfWeekyear());
 
-        System.out.println(dateTime.getWeekyear());
-        System.out.println(dateTime.getWeekOfWeekyear());
-
-        DateTime lastWeek = dateTime.minusWeeks(1);
+        DateTime lastWeek = dateTime1.minusWeeks(1);
+        System.out.println("2019.12.31的上一周");
         System.out.println(lastWeek.getWeekyear());
         System.out.println(lastWeek.getWeekOfWeekyear());
 
