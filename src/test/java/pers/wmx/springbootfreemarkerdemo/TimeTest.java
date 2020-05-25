@@ -44,6 +44,8 @@ public class TimeTest {
         DateTime time = DateTime.now();
         //获取周的第几天
         System.out.println(time.plusDays(2).getDayOfWeek());
+        System.out.println(time.getWeekOfWeekyear());
+
 
     }
 }
