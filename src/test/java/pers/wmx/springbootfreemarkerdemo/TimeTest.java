@@ -1,5 +1,7 @@
 package pers.wmx.springbootfreemarkerdemo;
 
+import java.util.concurrent.TimeUnit;
+
 import org.joda.time.DateTime;
 
 /**
@@ -46,6 +48,8 @@ public class TimeTest {
         System.out.println(time.plusDays(2).getDayOfWeek());
         System.out.println(time.getWeekOfWeekyear());
 
+        System.out.println(System.currentTimeMillis() / TimeUnit.MINUTES.toMillis(10));
 
+        System.out.println((System.currentTimeMillis() - TimeUnit.MINUTES.toMillis(10)) / TimeUnit.MINUTES.toMillis(10));
     }
 }

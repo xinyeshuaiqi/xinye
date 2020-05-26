@@ -6,7 +6,9 @@ import pers.wmx.springbootfreemarkerdemo.dao.CityMapper;
 import pers.wmx.springbootfreemarkerdemo.entity.City;
 import pers.wmx.springbootfreemarkerdemo.service.ICityService;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: wangmingxin02
@@ -27,4 +29,10 @@ public class CityServiceImpl implements ICityService {
     public List<City> findCityList() {
         return cityMapper.findCityList();
     }
+
+    @Override
+    public Map<Long, City> batchGetCityInfo(Collection<Long> cityIds) {
+        return null;
+    }
+
 }
