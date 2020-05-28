@@ -1,14 +1,17 @@
 package pers.wmx.springbootfreemarkerdemo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pers.wmx.springbootfreemarkerdemo.entity.City;
-import pers.wmx.springbootfreemarkerdemo.service.ICityService;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import pers.wmx.springbootfreemarkerdemo.entity.City;
+import pers.wmx.springbootfreemarkerdemo.entity.User;
+import pers.wmx.springbootfreemarkerdemo.service.ICityService;
 
 /**
  * @author: wangmingxin02
@@ -39,4 +42,12 @@ public class CityController {
         return "citylist";
     }
 
+    @RequestMapping("/response/test")
+    @ResponseBody
+    public User testResponse1(){
+        User user = new User();
+        user.setUserName("xinye");
+        user.setDescription("shuaiqi");
+        return user;
+    }
 }
