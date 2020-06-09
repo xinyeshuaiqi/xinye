@@ -38,6 +38,8 @@ public class TopListServiceImpl implements TopListService {
     @Override
     public List<Long> getTopList(long seasonId) {
         String key = "topList_" + seasonId;
+
+        //按照score从大到小排序，取前count名
         Set<TypedTuple<String>> tuples = stringRedisTemplate.opsForZSet()
                 .reverseRangeByScoreWithScores(key, 0, Double.POSITIVE_INFINITY, 0, TOP_LIST_SIZE);
 
