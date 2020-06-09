@@ -1,4 +1,4 @@
-package pers.wmx.springbootfreemarkerdemo;
+package pers.wmx.springbootfreemarkerdemo.util;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
