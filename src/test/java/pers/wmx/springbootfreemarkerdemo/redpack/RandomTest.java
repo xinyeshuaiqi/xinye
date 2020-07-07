@@ -8,35 +8,15 @@ import java.util.Random;
  */
 public class RandomTest {
 
-    //手工去测下拆红包的算法
     public static void main(String[] args) {
-        //一共5个红包，总额50
+        RedPackage redPackage = new RedPackage();
+        redPackage.remainMoney = 100;
+        redPackage.remainSize = 10;
 
-        Integer maxRandomAmount = 50 / 5 * 2;
-        int randomAmount = new Random().nextInt(maxRandomAmount) + 1;
-        System.out.println(randomAmount);  //第一个红包13
-
-        maxRandomAmount = (50-13)/4 * 2;
-        randomAmount = new Random().nextInt(maxRandomAmount) + 1;
-        System.out.println(randomAmount);  //第二个红包11
-
-        maxRandomAmount = (50-13-11)/3 * 2;
-        randomAmount = new Random().nextInt(maxRandomAmount) + 1;
-        System.out.println(randomAmount);  //第三个红包13
-
-        maxRandomAmount = (50-13-11-13)/2 * 2;
-        randomAmount = new Random().nextInt(maxRandomAmount) + 1;
-        System.out.println(randomAmount);  //第四个红包6
-
-        //最后一个红包
-        randomAmount = 50-13-11-13-6;
-
-
-        //红包分布大致均匀
-
-        Random r  = new Random();
-        double money = r.nextDouble() * (100 / 10 * 2) ;
-        System.out.println(money);
+        while (redPackage.remainSize > 0) {
+            double randomMoney = getRandomMoney(redPackage);
+            System.out.println(randomMoney);
+        }
     }
 
 
@@ -79,6 +59,8 @@ public class RandomTest {
 
 
 class RedPackage {
+    int id;
+    int userId;
     int remainSize;
     long remainMoney;
 }
