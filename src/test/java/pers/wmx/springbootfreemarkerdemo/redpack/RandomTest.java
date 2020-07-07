@@ -1,4 +1,4 @@
-package pers.wmx.springbootfreemarkerdemo;
+package pers.wmx.springbootfreemarkerdemo.redpack;
 
 import java.util.Random;
 
@@ -40,6 +40,21 @@ public class RandomTest {
     }
 
 
+    /**
+     * 抢红包最重要的莫过于拆包
+     * 拆的金额要保证尽可能随机，还要保证不能出现资损
+     * 还要包
+     *
+     * 为啥要  金额 / 红包数 * 2 我现在还没搞明白
+     *
+     * 可见 数学还是得好啊。。。
+     *
+     * 先抢后抢拿到红包的大小的期望是大致相等的，所以还是先下手抢吧
+     * 后抢的人方差大（依赖前面人抢的多少），波动较大，有较大几率拿到手气最佳
+     *
+     * 前面的人抢的越少，后面的抢的越多 （remainMoney大，产生大的随机值可能就大）
+     *
+     **/
     public static double getRandomMoney(RedPackage redPackage) {
         // remainSize 剩余的红包数量
         // remainMoney 剩余的钱
@@ -58,6 +73,8 @@ public class RandomTest {
         redPackage.remainMoney -= money;  // 100 - 13.25 =86.75
         return money;
     }
+
+
 }
 
 
