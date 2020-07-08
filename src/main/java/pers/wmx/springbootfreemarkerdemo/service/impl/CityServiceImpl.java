@@ -1,6 +1,7 @@
 package pers.wmx.springbootfreemarkerdemo.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import pers.wmx.springbootfreemarkerdemo.dao.CityMapper;
 import pers.wmx.springbootfreemarkerdemo.entity.City;
@@ -10,14 +11,20 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * @author: wangmingxin02
  * @create: 2019-03-26
  **/
 @Service
 public class CityServiceImpl implements ICityService {
+
     @Autowired
-    CityMapper cityMapper;
+    private StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    private CityMapper cityMapper;
 
 
     @Override
@@ -27,7 +34,9 @@ public class CityServiceImpl implements ICityService {
 
     @Override
     public List<City> findCityList() {
-        return cityMapper.findCityList();
+        List<City> cityList = cityMapper.findCityList();
+        stringRedisTemplate.opsForValue().set("city", JSON.toJSONString(cityList));
+        return cityList;
     }
 
     @Override
