@@ -1,5 +1,7 @@
 package pers.wmx.springbootfreemarkerdemo;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * @author: wangmingxin03
  * @date: 2020-05-29
@@ -21,7 +23,7 @@ public class StringTest {
         System.out.println(one == three); // true
 
 
-        String str1 = "str";
+        String str1 = "tr";
         String str2 = "ing";
 
         String str3 = "str" + "ing"; // 编译时拼接，保存在字符串常量池中。
@@ -30,6 +32,10 @@ public class StringTest {
 
         String str5 = "string";
         System.out.println(str3 == str5); // true
+
+
+        boolean contains = StringUtils.contains(str5, str1);
+        System.out.println(contains);
 
     }
 }
