@@ -29,7 +29,9 @@ public class MyAspect {
 
         //do something
 
-        return joinPoint.proceed();
+        Object result = joinPoint.proceed();
+        System.out.println(result);
+        return result;
     }
 
 }
