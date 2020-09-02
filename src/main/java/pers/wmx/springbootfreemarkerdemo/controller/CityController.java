@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
+import pers.wmx.springbootfreemarkerdemo.aspect.ActionAspect;
 import pers.wmx.springbootfreemarkerdemo.entity.City;
 import pers.wmx.springbootfreemarkerdemo.entity.User;
 import pers.wmx.springbootfreemarkerdemo.service.ICityService;
@@ -45,6 +46,7 @@ public class CityController {
         return "citylist";
     }
 
+    @ActionAspect(value = "do aspect")
     @RequestMapping("/response/test")
     @ResponseBody
     public User testResponse1(){
