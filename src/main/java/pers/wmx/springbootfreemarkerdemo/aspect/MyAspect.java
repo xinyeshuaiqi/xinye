@@ -3,6 +3,7 @@ package pers.wmx.springbootfreemarkerdemo.aspect;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,12 @@ public class MyAspect {
     @Pointcut("@annotation(pers.wmx.springbootfreemarkerdemo.aspect.ActionAspect)")
     public void access() {
 
+    }
+
+    //环绕
+    @Before("access()")
+    public void doBefore() {
+        System.out.println("do before");
     }
 
     //环绕
