@@ -30,10 +30,6 @@ class RedisTests {
     @Test
     fun testPipelined() {
         val objects = stringRedisTemplate!!.executePipelined { connection ->
-            connection.set("super carry".toByteArray(), "doinb".toByteArray())
-            connection.set("tian".toByteArray(), "神僧".toByteArray())
-
-            connection.get("super carry".toByteArray())
             connection.get("tian".toByteArray())
 
             null
