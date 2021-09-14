@@ -26,5 +26,12 @@ public class DoubleTest {
         int sum = map.values().stream().mapToInt(Integer::valueOf).sum();
         System.out.println(sum);
 
+        long x = 4 * 20 / 100;  // 0
+        System.out.println(x);
+        long y = 5 * 20 / 100;  // 1
+        System.out.println(y);
+
+        long z = 4 * (20 / 100);
+        System.out.println(z);
     }
 }
