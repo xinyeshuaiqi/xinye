@@ -41,6 +41,5 @@ public class Main {
         Thread.sleep(TimeUnit.SECONDS.toMillis(5));
         // 线程都执行完,释放锁
         System.out.println("after thread lock : " + ClassLayout.parseInstance(o).toPrintable()); // 001 （无锁）
-
     }
 }
