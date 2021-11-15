@@ -1,5 +1,7 @@
 package pers.wmx.springbootfreemarkerdemo.jol;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openjdk.jol.info.ClassLayout;
 
 /**
@@ -11,34 +13,34 @@ import org.openjdk.jol.info.ClassLayout;
  */
 public class Main {
 
-    public static void main(String[] args) {
-        System.out.println(ClassLayout.parseClass(Throwable.class).toPrintable());
-
+    public static void main(String[] args) throws InterruptedException {
         Object o = new Object();
-        System.out.println(ClassLayout.parseClass(o.getClass()).toPrintable());
-        System.out.println(ClassLayout.parseInstance(o).toPrintable());
+        System.out.println(ClassLayout.parseInstance(o).toPrintable());  // 001 （无锁）
 
-//        synchronized (o) {
-//            // System.out.println(ClassLayout.parseInstance(o).toPrintable());
-//            System.out.println("lock " + Thread.currentThread());
-//        }
+        synchronized (o) {
+            System.out.println(ClassLayout.parseInstance(o).toPrintable()); // 000 （轻量级锁）
+        }
 
         Thread t1 = new Thread(() -> {
             synchronized (o) {
-                System.out.println("lock " + Thread.currentThread());
+                System.out.println("t1 lock " + Thread.currentThread().getName());
+                System.out.println(ClassLayout.parseInstance(o).toPrintable());  // 010 (重量级锁)
             }
         });
 
         Thread t2 = new Thread(() -> {
             synchronized (o) {
-                System.out.println("lock " + Thread.currentThread());
+                System.out.println("t2 lock " + Thread.currentThread().getName());
+                System.out.println(ClassLayout.parseInstance(o).toPrintable());  // 010 (重量级锁)
             }
         });
 
         t1.start();
         t2.start();
 
-        System.out.println(ClassLayout.parseInstance(o).toPrintable());
+        Thread.sleep(TimeUnit.SECONDS.toMillis(5));
+        // 线程都执行完,释放锁
+        System.out.println("after thread lock : " + ClassLayout.parseInstance(o).toPrintable()); // 001 （无锁）
 
     }
 }
