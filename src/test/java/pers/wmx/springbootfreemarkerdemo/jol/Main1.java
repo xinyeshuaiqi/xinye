@@ -11,20 +11,12 @@ import org.openjdk.jol.info.ClassLayout;
  */
 public class Main1 {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         A a = new A();
         System.out.println("a : " + ClassLayout.parseInstance(a).toPrintable());
-
-        B b = new B();
-        System.out.println("b : " + ClassLayout.parseInstance(b).toPrintable());
     }
 
     static class A {
         private int x = 10;
-    }
-
-    static class B {
-        private Integer y = 20;
-        private A a = new A();
     }
 }
