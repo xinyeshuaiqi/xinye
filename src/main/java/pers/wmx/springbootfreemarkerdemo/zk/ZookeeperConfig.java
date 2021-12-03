@@ -2,7 +2,6 @@ package pers.wmx.springbootfreemarkerdemo.zk;
 
 import java.util.concurrent.CountDownLatch;
 
-import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.springframework.context.annotation.Bean;
@@ -28,12 +27,9 @@ public class ZookeeperConfig {
         try {
             final CountDownLatch countDownLatch = new CountDownLatch(1);
 
-            zooKeeper = new ZooKeeper(connectString, timeout, new Watcher() {
-                @Override
-                public void process(WatchedEvent event) {
-                    if (Event.KeeperState.SyncConnected == event.getState()) {
-                        countDownLatch.countDown();
-                    }
+            zooKeeper = new ZooKeeper(connectString, timeout, event -> {
+                if (Watcher.Event.KeeperState.SyncConnected == event.getState()) {
+                    countDownLatch.countDown();
                 }
             });
 
