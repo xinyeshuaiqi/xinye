@@ -1,5 +1,7 @@
 package pers.wmx.springbootfreemarkerdemo.zk;
 
+import java.util.concurrent.CountDownLatch;
+
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooKeeper;
@@ -41,6 +43,26 @@ public class ZkTest {
             log.info("query result:{}", new String(bytes));
         } catch (Exception e) {
             log.error("query fail ... ", e);
+        }
+    }
+
+    @Test
+    public void testWatcher() {
+        try {
+            CountDownLatch countDownLatch = new CountDownLatch(1);
+            Stat exists = zkClient.exists("/hello", watchedEvent -> {
+
+                // 注册一个监听器
+                log.info("watch event | path:{}, type:{}",
+                        watchedEvent.getPath(), watchedEvent.getType());
+                countDownLatch.countDown();
+
+            });
+
+            log.info("exists :{}", exists != null);
+            countDownLatch.await();
+        } catch (Exception e) {
+            log.error("fail ... ", e);
         }
     }
 
