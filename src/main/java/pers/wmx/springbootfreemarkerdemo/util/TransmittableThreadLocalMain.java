@@ -20,7 +20,7 @@ public class TransmittableThreadLocalMain {
     private static final TransmittableThreadLocal<Integer> THREAD_LOCAL = new TransmittableThreadLocal<>();
 
     // 线程复用也可以传递
-    private static  final ExecutorService threadPool = Executors.newFixedThreadPool(5);
+    private static  final ExecutorService THREAD_POOL = Executors.newFixedThreadPool(5);
 
     public static void main(String[] args) throws Exception {
         for (int i = 0; i < 10 ; i++) {
@@ -29,7 +29,7 @@ public class TransmittableThreadLocalMain {
         }
 
         Thread.sleep(3000);
-        threadPool.shutdown();
+        THREAD_POOL.shutdown();
     }
 
     static class TomcatThread extends Thread {
@@ -45,7 +45,7 @@ public class TransmittableThreadLocalMain {
             log.info(name + ":" + index);
             THREAD_LOCAL.set(index);
 
-            threadPool.submit(Objects.requireNonNull(TtlRunnable.get(new BusinessThread(name))));
+            THREAD_POOL.submit(Objects.requireNonNull(TtlRunnable.get(new BusinessThread(name))));
         }
     }
 
