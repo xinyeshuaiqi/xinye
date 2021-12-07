@@ -10,6 +10,8 @@ import com.alibaba.ttl.TtlRunnable;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * https://github.com/alibaba/transmittable-thread-local
+ *
  * @author wangmingxin03
  * Created on 2021-12-07
  */
