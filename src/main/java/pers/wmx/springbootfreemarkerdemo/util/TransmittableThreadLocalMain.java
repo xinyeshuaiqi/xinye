@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TransmittableThreadLocalMain {
     private static final TransmittableThreadLocal<Integer> THREAD_LOCAL = new TransmittableThreadLocal<>();
 
+    // 线程复用也可以传递
     private static  final ExecutorService threadPool = Executors.newFixedThreadPool(5);
 
     public static void main(String[] args) throws Exception {
