@@ -1,8 +1,11 @@
 package pers.wmx.springbootfreemarkerdemo.eventbus.observer;
 
 
+import com.alibaba.fastjson.JSON;
+
 import lombok.extern.slf4j.Slf4j;
 import pers.wmx.springbootfreemarkerdemo.eventbus.Subscribe;
+import pers.wmx.springbootfreemarkerdemo.eventbus.event.OrderPlaceEvent;
 
 /**
  * @author wangmingxin03
@@ -18,5 +21,11 @@ public class CObserver {
     @Subscribe
     public void handle(Integer msg) {
         log.info("CObserver msg:{}", msg);
+    }
+
+    @Subscribe
+    public void handle(OrderPlaceEvent event) {
+        log.info("CObserver | userId:{}, orderId:{}",
+                event.getUserId(), event.getOrderId());
     }
 }

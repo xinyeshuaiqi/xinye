@@ -2,6 +2,7 @@ package pers.wmx.springbootfreemarkerdemo.eventbus;
 
 import java.util.concurrent.Executors;
 
+import pers.wmx.springbootfreemarkerdemo.eventbus.event.OrderPlaceEvent;
 import pers.wmx.springbootfreemarkerdemo.eventbus.observer.AObserver;
 import pers.wmx.springbootfreemarkerdemo.eventbus.observer.BObserver;
 import pers.wmx.springbootfreemarkerdemo.eventbus.observer.CObserver;
@@ -22,6 +23,7 @@ public class EventBusMain {
 
         EVENT_BUS.post("haha");
         EVENT_BUS.post(666);
+        EVENT_BUS.post(new OrderPlaceEvent(123, 777));
     }
 
 }
