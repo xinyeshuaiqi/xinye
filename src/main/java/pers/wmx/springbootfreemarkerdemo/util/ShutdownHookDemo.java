@@ -18,5 +18,7 @@ public class ShutdownHookDemo {
         log.info("start ... ");
         Runtime.getRuntime().addShutdownHook(new ShutDownHook());
         Thread.sleep(5000);
+
+        System.exit(0);
     }
 }
