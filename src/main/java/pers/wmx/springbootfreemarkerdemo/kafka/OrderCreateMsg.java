@@ -9,6 +9,9 @@ public class OrderCreateMsg {
 
     long userId;
 
+    public OrderCreateMsg() {
+    }
+
     public OrderCreateMsg(int orderId, long userId) {
         this.orderId = orderId;
         this.userId = userId;

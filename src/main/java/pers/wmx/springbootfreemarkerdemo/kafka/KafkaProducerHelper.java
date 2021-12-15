@@ -15,7 +15,7 @@ import org.springframework.util.concurrent.ListenableFuture;
  */
 @Service
 public class KafkaProducerHelper {
-    private static final String TOPIC_NAME = "kafka-test";
+    private static final String TOPIC_NAME = "test-1";
 
     @Resource
     private KafkaTemplate<Object, Object> kafkaTemplate;

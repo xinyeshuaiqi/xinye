@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class KafkaConsumerHelper {
-    private static final String TOPIC_NAME = "kafka-test";
+    private static final String TOPIC_NAME = "test-1";
 
     @KafkaListener(topics = TOPIC_NAME, groupId = "order-create")
     public void onMessage(OrderCreateMsg orderCreateMsg) {

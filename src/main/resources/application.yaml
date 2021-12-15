@@ -1,6 +1,6 @@
 spring:
   kafka:
-    bootstrap-servers: 39.97.47.254:9092
+    bootstrap-servers: 39.97.47.254:9092,39.97.47.254:9093,39.97.47.254:9094
     producer:
       acks: 1
       retries: 3
@@ -11,3 +11,8 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       auto-offset-reset: earliest
       enable-auto-commit: true
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: pers.wmx.springbootfreemarkerdemo.kafka
