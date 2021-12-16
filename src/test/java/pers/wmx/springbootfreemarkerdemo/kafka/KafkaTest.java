@@ -22,7 +22,7 @@ public class KafkaTest {
 
     @Test
     public void testSend() throws Exception {
-        OrderCreateMsg msg = new OrderCreateMsg(1, 123);
+        OrderCreateMsg msg = new OrderCreateMsg(2, 234);
         SendResult sendResult = kafkaProducerHelper.send(msg);
         log.info("sendResult:{}", sendResult);
     }
