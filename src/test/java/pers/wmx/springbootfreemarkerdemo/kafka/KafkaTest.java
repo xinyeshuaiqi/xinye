@@ -25,9 +25,6 @@ public class KafkaTest {
         OrderCreateMsg msg = new OrderCreateMsg(1, 123);
         SendResult sendResult = kafkaProducerHelper.send(msg);
         log.info("sendResult:{}", sendResult);
-
-        // 保证消费者消费
-        Thread.sleep(5000);
     }
 
 }
