@@ -33,7 +33,8 @@ public class SimplePartitionerKafkaProducer {
         properties.setProperty(ProducerConfig.PARTITIONER_CLASS_CONFIG, DefaultPartitioner.class.getName());
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
-        ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, "888");
+        ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, "1", "888");  // 指定了key,固定打到一个分区
+        // ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, "2", "888");  固定打到一个分区
         Future<RecordMetadata> result = producer.send(record);
 
         RecordMetadata recordMetadata = result.get();
