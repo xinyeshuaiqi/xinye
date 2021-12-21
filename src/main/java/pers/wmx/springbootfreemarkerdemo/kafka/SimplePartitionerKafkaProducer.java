@@ -29,7 +29,7 @@ public class SimplePartitionerKafkaProducer {
         properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
-        // 指定分区策略 partitioner.class，默认的 DefaultPartitioner 是hash的
+        // 指定分区策略 partitioner.class，默认的 DefaultPartitioner
         properties.setProperty(ProducerConfig.PARTITIONER_CLASS_CONFIG, DefaultPartitioner.class.getName());
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
