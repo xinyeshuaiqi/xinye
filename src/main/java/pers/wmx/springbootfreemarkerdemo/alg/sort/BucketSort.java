@@ -1,4 +1,4 @@
-package pers.wmx.springbootfreemarkerdemo.alg;
+package pers.wmx.springbootfreemarkerdemo.alg.sort;
 
 import static pers.wmx.springbootfreemarkerdemo.alg.XSimpleUtils.printArray;
 

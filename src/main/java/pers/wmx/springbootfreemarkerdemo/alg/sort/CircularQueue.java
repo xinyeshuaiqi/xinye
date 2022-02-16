@@ -1,4 +1,4 @@
-package pers.wmx.springbootfreemarkerdemo.alg;
+package pers.wmx.springbootfreemarkerdemo.alg.sort;
 
 /**
  * 循环队列
