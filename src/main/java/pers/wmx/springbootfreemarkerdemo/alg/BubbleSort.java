@@ -1,5 +1,8 @@
 package pers.wmx.springbootfreemarkerdemo.alg;
 
+import static pers.wmx.springbootfreemarkerdemo.alg.XSimpleUtils.printArray;
+import static pers.wmx.springbootfreemarkerdemo.alg.XSimpleUtils.swap;
+
 /**
  * @author wangmingxin03
  * Created on 2022-02-16
@@ -18,19 +21,6 @@ public class BubbleSort {
             }
         }
     }
-
-    public static void swap(int[] a, int i, int j) {
-        int temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
-    }
-
-    public static void printArray(int[] a) {
-        for(int i = 0; i< a.length; i++) {
-            System.out.print(a[i]);
-        }
-    }
-
     public static void main(String[] args) {
         int []arr = {3, 1, 5, 2, 4, 8, 1};
         bubbleSort(arr);
