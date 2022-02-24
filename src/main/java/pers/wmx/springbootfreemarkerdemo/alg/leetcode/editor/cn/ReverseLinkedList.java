@@ -42,7 +42,6 @@ package pers.wmx.springbootfreemarkerdemo.alg.leetcode.editor.cn;
 // Related Topics 递归 链表 
 // 👍 2291 👎 0
 
-import pers.wmx.springbootfreemarkerdemo.alg.leetcode.editor.cn.ListNode;
 
 public class ReverseLinkedList {
     public static void main(String[] args) {
@@ -62,7 +61,26 @@ public class ReverseLinkedList {
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        return null;
+
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode pre = null;
+        ListNode next = null;
+        ListNode cur = head;
+
+        while (cur.next != null) {
+            // 先拿到当前节点的下一节点，不然后面的链表就断掉了
+            next = cur.next;
+
+            cur.next = pre;
+            cur = next;
+            pre = cur;
+        }
+
+        cur.next = pre;
+        return cur;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
