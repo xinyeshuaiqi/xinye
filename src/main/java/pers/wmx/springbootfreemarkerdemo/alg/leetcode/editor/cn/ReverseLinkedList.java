@@ -61,27 +61,47 @@ public class ReverseLinkedList {
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-
         if (head == null || head.next == null) {
             return head;
         }
 
         ListNode pre = null;
-        ListNode next = null;
         ListNode cur = head;
 
-        while (cur.next != null) {
-            // 先拿到当前节点的下一节点，不然后面的链表就断掉了
-            next = cur.next;
+        while (cur != null) {
+            // 需要记录next值
+            ListNode next = cur.next;
 
             cur.next = pre;
-            cur = next;
             pre = cur;
+            cur = next;
         }
 
-        cur.next = pre;
-        return cur;
+        return pre;
     }
+
+//    public ListNode reverseList(ListNode head) {
+//
+//        if (head == null || head.next == null) {
+//            return head;
+//        }
+//
+//        ListNode pre = null;
+//        ListNode next = null;
+//        ListNode cur = head;
+//
+//        while (cur.next != null) {
+//            // 先拿到当前节点的下一节点，不然后面的链表就断掉了
+//            next = cur.next;
+//
+//            cur.next = pre;
+//            cur = next;
+//            pre = cur;
+//        }
+//
+//        cur.next = pre;
+//        return cur;
+//    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
