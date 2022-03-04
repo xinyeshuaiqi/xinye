@@ -30,6 +30,10 @@ package pers.wmx.springbootfreemarkerdemo.alg.leetcode.editor.cn;
 
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 
 public class MajorityElement {
     public static void main(String[] args) {
@@ -38,16 +42,91 @@ public class MajorityElement {
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+//    public int majorityElement(int[] nums) {
+//        Arrays.sort(nums);
+//
+//        int low = 0;
+//        int high = nums.length - 1;
+//        int mid = (low + high) / 2;
+//
+//        // 出现超过一半的数一定是排好序中间的那个数
+//        return nums[mid];
+//    }
+
+//    public int majorityElement(int[] nums) {
+//        // 超过一半的数一定是出现最多的那个数
+//        Map<Integer, Integer> record = new HashMap<>();
+//
+//        for (int i = 0; i < nums.length; i++) {
+//            int count = record.getOrDefault(nums[i], 0);
+//            record.put(nums[i], ++count);
+//        }
+//
+//        int maxNum = -1;
+//        int maxCount = 0;
+//        for(Map.Entry<Integer, Integer> e: record.entrySet()) {
+//            if (e.getValue() > maxCount) {
+//                maxCount = e.getValue();
+//                maxNum = e.getKey();
+//            }
+//        }
+//
+//        return maxNum;
+//    }
+
+
+        // 抵消法 最多的元素一定存活到最后
     public int majorityElement(int[] nums) {
-        Arrays.sort(nums);
+        Queue<Integer> queue = new LinkedList<>();
 
-        int low = 0;
-        int high = nums.length - 1;
-        int mid = (low + high) / 2;
+        queue.offer(nums[0]);
+        for (int i = 1; i < nums.length; i++) {
+            if (queue.isEmpty()) {
+                queue.offer(nums[i]);
+            } else {
+                int temp = queue.peek();
+                if (temp != nums[i]) {
+                    queue.poll();
+                } else {
+                    queue.offer(nums[i]);
+                }
+            }
+        }
 
-        // 出现超过一半的数一定是排好序中间的那个数
-        return nums[mid];
+        return queue.peek();
     }
+
+//    public int majorityElement(int[] nums) {
+//        if (nums == null || nums.length == 0) {
+//            return -1;
+//        }
+//
+//        if (nums.length == 1) {
+//            return nums[0];
+//        }
+//
+//        int max = 0;
+//        for (int i = 0; i < nums.length; i++) {
+//            max = Math.max(max, nums[i]);
+//        }
+//
+//        int []arr = new int[max + 1];
+//
+//        for (int i = 0; i < nums.length; i++) {
+//            arr[nums[i]] ++;
+//        }
+//
+//        int result = 0;
+//        int count = 0;
+//        for (int i = 0; i < arr.length; i++) {
+//            if (arr[i] > count) {
+//                result = i;
+//                count = arr[i];
+//            }
+//        }
+//
+//        return result;
+//    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
