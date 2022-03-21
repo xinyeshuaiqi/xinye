@@ -48,8 +48,27 @@ public class AddStrings {
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String addStrings(String num1, String num2) {
+        // 从最后一位开始加
 
-        return null;
+        int i = num1.length() - 1;
+        int j = num2.length() - 1;
+        int add = 0;
+
+        StringBuffer sb = new StringBuffer();
+        while (i >= 0 || j >= 0 || add != 0) {
+            int x = i >= 0 ? num1.charAt(i) - '0' : 0;
+            int y = j >= 0 ? num2.charAt(j) - '0' : 0;
+
+            int result = x + y + add;
+            sb.append(result % 10);
+
+            // 进位
+            add = result / 10;
+            i--;
+            j--;
+        }
+        sb.reverse();
+        return sb.toString();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
