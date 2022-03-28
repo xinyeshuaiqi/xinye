@@ -37,6 +37,7 @@ package pers.wmx.springbootfreemarkerdemo.alg.leetcode.editor.cn;//给定一个�
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Permutations {
@@ -46,13 +47,39 @@ public class Permutations {
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
 
+        public List<List<Integer>> permute(int[] nums) {
+            LinkedList<Integer> track = new LinkedList<>();
+            boolean[] used = new boolean[nums.length];
 
-        return result;
+            track(nums, track, used);
+            return result;
+        }
+
+        // 没有想象中的那么难，不要慌。。。
+        private void track(int[] nums, LinkedList<Integer> track, boolean[] used) {
+            if (nums.length == track.size()) {
+                result.add(new LinkedList<>(track));
+                return;
+            }
+
+            for (int i = 0; i < nums.length; i++) {
+                if (used[i]) {
+                    continue;
+                }
+
+                // 加进去
+                track.add(nums[i]);
+                used[i] = true;
+                track(nums, track, used);
+
+                // 再干掉
+                track.removeLast();
+                used[i] = false;
+            }
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 } 
