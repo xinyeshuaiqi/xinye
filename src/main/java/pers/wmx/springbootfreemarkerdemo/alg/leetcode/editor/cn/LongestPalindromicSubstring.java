@@ -36,10 +36,46 @@ public class LongestPalindromicSubstring {
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
+        int start = 0;
+        int maxLen = 0;
+
     public String longestPalindrome(String s) {
-        return "";
+        if (s == null) {
+            return null;
+        }
+
+        if (s.length() < 2) {
+            return s;
+        }
+
+        // 从中心往两边扩展
+        for (int i = 0; i < s.length(); i++) {
+            findLongestPalindrome(s, i ,i);  // 奇数个
+            findLongestPalindrome(s, i, i + 1);  // 偶数个
+        }
+
+        return s.substring(start, start + maxLen);
     }
-}
+
+        private void findLongestPalindrome(String s, int j, int k) {
+            while(j >= 0
+                    && k < s.length()
+                    && s.charAt(j) == s.charAt(k)) {
+                j--;
+                k++;
+            }
+
+            int len = k - j - 1;
+
+            if (len > maxLen) {
+                maxLen = len;
+                start = j + 1;
+            }
+        }
+
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 } 
