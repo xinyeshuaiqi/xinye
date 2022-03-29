@@ -81,6 +81,9 @@ class Solution {
         }
 
         private void search(String s, String digits, int i) {
+
+            // terminator -> process -> drill down (进入下一层) -> reverse
+
             if (i == digits.length()) {
                 res.add(s);
                 return;
