@@ -27,6 +27,7 @@ package pers.wmx.springbootfreemarkerdemo.alg.leetcode.editor.cn;//数字 n 代�
 // 👍 2497 👎 0
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateParentheses {
@@ -36,12 +37,36 @@ public class GenerateParentheses {
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    private List<String> result = new ArrayList<>();
+
     public List<String> generateParenthesis(int n) {
+        if (n == 0) {
+            return result;
+        }
 
-
-        return null;
+        dfs("", 0, 0, n);
+        return result;
     }
-}
+
+        private void dfs(String cur, int left, int right, int n) {
+            if (left == n && right == n) {
+                result.add(cur);
+                return;
+            }
+
+            if (left < right) {
+                return;
+            }
+
+            if (left < n) {
+                dfs(cur + "(", left + 1, right, n);
+            }
+
+            if (right < n) {
+                dfs(cur + ")", left, right + 1, n);
+            }
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 } 
