@@ -67,32 +67,47 @@ public class InvertBinaryTree {
  */
 // 226
 class Solution {
+//    public TreeNode invertTree(TreeNode root) {
+//        if (root == null) {
+//            return null;
+//        }
+//
+//        Queue<TreeNode> queue = new LinkedList<>();
+//        queue.offer(root);
+//
+//        while (!queue.isEmpty()) {
+//            TreeNode node = queue.poll();
+//
+//            TreeNode left = node.left;
+//            node.left = node.right;
+//            node.right = left;
+//
+//            if (node.left != null) {
+//                queue.offer(node.left);
+//            }
+//
+//            if (node.right != null) {
+//                queue.offer(node.right);
+//            }
+//        }
+//
+//        return root;
+//    }
+
     public TreeNode invertTree(TreeNode root) {
         if (root == null) {
             return null;
         }
 
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
+        // 如果去尝试脑补递归，会让自己变得像个傻子一样。。。
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
 
-        while (!queue.isEmpty()) {
-            TreeNode node = queue.poll();
-
-            TreeNode left = node.left;
-            node.left = node.right;
-            node.right = left;
-
-            if (node.left != null) {
-                queue.offer(node.left);
-            }
-
-            if (node.right != null) {
-                queue.offer(node.right);
-            }
-        }
-
+        root.left = right;
+        root.right = left;
         return root;
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
