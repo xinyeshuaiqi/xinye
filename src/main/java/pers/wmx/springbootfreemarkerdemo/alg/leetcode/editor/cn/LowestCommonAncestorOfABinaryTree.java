@@ -68,37 +68,65 @@ class Solution {
     Map<Integer, TreeNode> parent = new HashMap<Integer, TreeNode>();
     Set<Integer> visited = new HashSet<Integer>();
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        // 深度遍历一波，记录好每个节点的父亲
-        dfs(root);
-
-        while (p != null) {
-            visited.add(p.val);
-            p = parent.get(p.val);
-        }
-
-        while (q != null) {
-            if (visited.contains(q.val)) {
-                return q;
-            }
-
-            q = parent.get(q.val);
-        }
-
-        return null;
-    }
+//    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+//        // 深度遍历一波，记录好每个节点的父亲
+//        dfs(root);
+//
+//        while (p != null) {
+//            visited.add(p.val);
+//            p = parent.get(p.val);
+//        }
+//
+//        while (q != null) {
+//            if (visited.contains(q.val)) {
+//                return q;
+//            }
+//
+//            q = parent.get(q.val);
+//        }
+//
+//        return null;
+//    }
 
     // 深度遍历，记录好每个parent
-    private void dfs(TreeNode root) {
-        if (root.left != null) {
-            parent.put(root.left.val, root);
-            dfs(root.left);
+//    private void dfs(TreeNode root) {
+//        if (root.left != null) {
+//            parent.put(root.left.val, root);
+//            dfs(root.left);
+//        }
+//
+//        if (root.right != null) {
+//            parent.put(root.right.val, root);
+//            dfs(root.right);
+//        }
+//    }
+
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return null;
         }
 
-        if (root.right != null) {
-            parent.put(root.right.val, root);
-            dfs(root.right);
+        return find(root, p, q);
+    }
+
+    private TreeNode find(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return null;
         }
+
+        if (root.val == p.val || root.val == q.val) {
+            return root;
+        }
+
+        TreeNode left = find(root.left, p, q);
+        TreeNode right = find(root.right, p, q);
+
+        if (left != null && right != null) {
+            return root;
+        }
+
+        return left != null ? left : right;
     }
 
 
