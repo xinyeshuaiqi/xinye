@@ -53,22 +53,46 @@ public class LowestCommonAncestorOfABinarySearchTree {
  */
 
 class Solution {
+//    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+//
+//        TreeNode cur = root;
+//
+//        while(true) {
+//            // 一直往下深入
+//            if (p.val < cur.val && q.val < cur.val) {
+//                cur = cur.left;
+//            } else if (p.val > cur.val && q.val > cur.val) {
+//                cur = cur.right;
+//            } else {
+//                break;
+//            }
+//        }
+//
+//        return cur;
+//    }
+
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
-        TreeNode cur = root;
+        int valMin = Math.min(p.val, q.val);
+        int valMax = Math.max(p.val, q.val);
 
-        while(true) {
-            // 一直往下深入
-            if (p.val < cur.val && q.val < cur.val) {
-                cur = cur.left;
-            } else if (p.val > cur.val && q.val > cur.val) {
-                cur = cur.right;
-            } else {
-                break;
-            }
+        return find(root, valMin, valMax);
+    }
+
+    private TreeNode find(TreeNode root, int valMin, int valMax) {
+        if (root == null) {
+            return null;
         }
 
-        return cur;
+        if (root.val > valMax) {
+            return find(root.left, valMin, valMax);
+        }
+
+        if (root.val < valMin) {
+            return find(root.right, valMin, valMax);
+        }
+
+        return root;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
