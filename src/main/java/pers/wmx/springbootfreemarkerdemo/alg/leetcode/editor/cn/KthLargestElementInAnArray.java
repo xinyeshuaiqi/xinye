@@ -48,28 +48,88 @@ class Solution {
 
         // 使用堆
         // 在Java里使用优先级队列
+//        public int findKthLargest(int[] nums, int k) {
+//            // 指定小顶堆大小 (底层是一个数组)
+//            PriorityQueue<Integer> minHeap =
+//                    new PriorityQueue<>(k, Comparator.comparing(a -> a));
+//
+//            // 先把前k个元素扔进去
+//            for (int i = 0; i < k; i++) {
+//                minHeap.offer(nums[i]);
+//            }
+//
+//            for (int i = k; i < nums.length; i++) {
+//                int maxNum = minHeap.peek();
+//                if (nums[i] > maxNum) {
+//                    minHeap.poll();
+//                    minHeap.offer(nums[i]);
+//                }
+//            }
+//
+//            return minHeap.peek();
+//        }
+
+        // 可以用快排来找
         public int findKthLargest(int[] nums, int k) {
-            // 指定小顶堆大小 (底层是一个数组)
-            PriorityQueue<Integer> minHeap =
-                    new PriorityQueue<>(k, Comparator.comparing(a -> a));
+            // 转换k的语意，升序第n-k个
+            k = nums.length - k;
 
-            // 先把前k个元素扔进去
-            for (int i = 0; i < k; i++) {
-                minHeap.offer(nums[i]);
-            }
+            int low = 0;
+            int high = nums.length - 1;
 
-            for (int i = k; i < nums.length; i++) {
-                int maxNum = minHeap.peek();
-                if (nums[i] > maxNum) {
-                    minHeap.poll();
-                    minHeap.offer(nums[i]);
+            while (low <= high) {
+                int p = partition(nums, low, high);
+                if (p < k) {
+                    low = p + 1;
+                } else if (p > k) {
+                    high = p -1;
+                } else {
+                    return nums[p];
                 }
             }
 
-            return minHeap.peek();
+            return -1;
         }
 
-}
+        // 关键算法
+        private int partition(int[] nums, int low, int high) {
+            int key = nums[low];
+
+            int i = low + 1;
+            int j = high;
+
+            // i自增，j自减
+            while (i <= j) {
+                while (i < high && nums[i] <= key) {
+                    i++;
+                }
+                // 找到一个i位置的树大于key,跳出循环
+
+                while (j >= low + 1 && nums[j] > key) {
+                    j--;
+                }
+                // 找到一个j位置的树小于key,跳出循环
+
+                // 此时 [lo, i) <= pivot && (j, hi] > pivot
+                if (i >= j) {
+                    break;
+                }
+
+                swap(nums, i, j);
+            }
+
+            // 基准归位
+            swap(nums, low, j);
+            return j;
+        }
+
+        private void swap(int[] nums, int i, int j) {
+            int temp = nums[i];
+            nums[i] =  nums[j];
+            nums[j] = temp;
+        }
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 } 
