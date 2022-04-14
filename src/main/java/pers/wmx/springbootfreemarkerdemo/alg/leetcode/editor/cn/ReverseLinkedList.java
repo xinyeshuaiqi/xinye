@@ -60,25 +60,25 @@ public class ReverseLinkedList {
  * }
  */
 class Solution {
-    public ListNode reverseList(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-
-        ListNode pre = null;
-        ListNode cur = head;
-
-        while (cur != null) {
-            // 需要记录next值
-            ListNode next = cur.next;
-
-            cur.next = pre;
-            pre = cur;
-            cur = next;
-        }
-
-        return pre;
-    }
+//    public ListNode reverseList(ListNode head) {
+//        if (head == null || head.next == null) {
+//            return head;
+//        }
+//
+//        ListNode pre = null;
+//        ListNode cur = head;
+//
+//        while (cur != null) {
+//            // 需要记录next值
+//            ListNode next = cur.next;
+//
+//            cur.next = pre;
+//            pre = cur;
+//            cur = next;
+//        }
+//
+//        return pre;
+//    }
 
 //    public ListNode reverseList(ListNode head) {
 //
@@ -102,6 +102,27 @@ class Solution {
 //        cur.next = pre;
 //        return cur;
 //    }
+
+
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode pre = null;
+        ListNode cur = head;
+
+        while (cur != null) {
+            // 先记录下下一个值
+            ListNode next = cur.next;
+
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+
+        return pre;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
