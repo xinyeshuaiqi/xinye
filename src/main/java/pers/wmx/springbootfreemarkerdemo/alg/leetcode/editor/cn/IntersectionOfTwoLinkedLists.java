@@ -106,25 +106,38 @@ public class IntersectionOfTwoLinkedLists {
  * }
  */
 public class Solution {
+//    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+//        Set<ListNode> visited = new HashSet<>();
+//
+//        ListNode p = headA;
+//        while (p != null) {
+//            visited.add(p);
+//            p = p.next;
+//        }
+//
+//        ListNode q = headB;
+//        while (q != null) {
+//            if (visited.contains(q)) {
+//                return q;
+//            }
+//
+//            q = q.next;
+//        }
+//
+//        return null;
+//    }
+
+
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        Set<ListNode> visited = new HashSet<>();
+        ListNode a = headA;
+        ListNode b = headB;
 
-        ListNode p = headA;
-        while (p != null) {
-            visited.add(p);
-            p = p.next;
+        while (a != b) {
+            a = a != null ? a.next : headB;
+            b = b != null ? b.next : headA;
         }
 
-        ListNode q = headB;
-        while (q != null) {
-            if (visited.contains(q)) {
-                return q;
-            }
-
-            q = q.next;
-        }
-
-        return null;
+        return a;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
