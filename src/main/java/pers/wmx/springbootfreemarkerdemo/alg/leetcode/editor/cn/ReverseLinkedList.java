@@ -104,24 +104,39 @@ class Solution {
 //    }
 
 
+//    public ListNode reverseList(ListNode head) {
+//        if (head == null || head.next == null) {
+//            return head;
+//        }
+//
+//        ListNode pre = null;
+//        ListNode cur = head;
+//
+//        while (cur != null) {
+//            // 先记录下下一个值
+//            ListNode next = cur.next;
+//
+//            cur.next = pre;
+//            pre = cur;
+//            cur = next;
+//        }
+//
+//        return pre;
+//    }
+
+    // 递归法
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        ListNode pre = null;
-        ListNode cur = head;
+        ListNode next = head.next;
+        ListNode newHead = reverseList(next);
 
-        while (cur != null) {
-            // 先记录下下一个值
-            ListNode next = cur.next;
+        head.next = null;
+        next.next = head;
 
-            cur.next = pre;
-            pre = cur;
-            cur = next;
-        }
-
-        return pre;
+        return newHead;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
