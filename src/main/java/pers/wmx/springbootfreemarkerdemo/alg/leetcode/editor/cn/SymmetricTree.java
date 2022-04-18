@@ -57,28 +57,68 @@ public class SymmetricTree {
  * }
  */
 class Solution {
+//    public boolean isSymmetric(TreeNode root) {
+//        if (root == null) {
+//            return true;
+//        }
+//
+//        return check(root, root);
+//    }
+
+//    private boolean check(TreeNode u, TreeNode v) {
+//        Queue<TreeNode> queue = new LinkedList<>();
+//        queue.offer(u);
+//        queue.offer(v);
+//
+//        while (!queue.isEmpty()) {
+//            u = queue.poll();
+//            v = queue.poll();
+//
+//            if (u == null && v == null) {
+//                continue;
+//            }
+//
+//            if (u == null || v == null || (u.val != v.val)) {
+//                return false;
+//            }
+//
+//            queue.offer(u.left);
+//            queue.offer(v.right);
+//
+//            queue.offer(u.right);
+//            queue.offer(v.left);
+//        }
+//
+//        return true;
+//    }
+
+    // 第2遍
     public boolean isSymmetric(TreeNode root) {
         if (root == null) {
             return true;
         }
-        
-        return check(root, root);
+
+        return checkSymmetric(root, root);
     }
 
-    private boolean check(TreeNode u, TreeNode v) {
+    private boolean checkSymmetric(TreeNode root1, TreeNode root2) {
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(u);
-        queue.offer(v);
-        
+        queue.offer(root1);
+        queue.offer(root2);
+
         while (!queue.isEmpty()) {
-            u = queue.poll();
-            v = queue.poll();
+            TreeNode u = queue.poll();
+            TreeNode v = queue.poll();
 
             if (u == null && v == null) {
                 continue;
             }
 
-            if (u == null || v == null || (u.val != v.val)) {
+            if (u == null || v == null) {
+                return false;
+            }
+
+            if (u.val != v.val) {
                 return false;
             }
 
@@ -91,6 +131,7 @@ class Solution {
 
         return true;
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
