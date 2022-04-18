@@ -71,12 +71,45 @@ class Solution {
 //        return -1;
 //    }
 
-        public int coinChange(int[] coins, int amount) {
+        // 三种思路由浅入深，从递归到记忆化搜索到动态规划，即是算法效率的提升，也是思维的提升。
 
+        // 递归   Time Limit Exceeded ！！！
+//        private int res = Integer.MAX_VALUE;
+//        public int coinChange(int[] coins, int amount) {
+//            if (amount < 1) {
+//                return 0;
+//            }
+//
+//            findWay(coins, amount, 0);
+//
+//            if (res == Integer.MAX_VALUE) {
+//                return  -1;
+//            }
+//
+//            return res;
+//        }
+//
+//        private void findWay(int[] coins, int amount, int count) {
+//            if (amount < 0) {
+//                return;
+//            }
+//
+//            if (amount == 0) {
+//                res = Math.min(count, res);
+//            }
+//
+//            for (int i = 0; i < coins.length; i++) {
+//                findWay(coins, amount - coins[i], count + 1);
+//            }
+//        }
+
+
+        // 记忆化搜索
+        public int coinChange(int[] coins, int amount) {
 
             return -1;
         }
-}
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 } 
