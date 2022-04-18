@@ -125,18 +125,39 @@ class Solution {
 //    }
 
     // 递归法
+//    public ListNode reverseList(ListNode head) {
+//        if (head == null || head.next == null) {
+//            return head;
+//        }
+//
+//        ListNode next = head.next;
+//        ListNode newHead = reverseList(next);
+//
+//        head.next = null;
+//        next.next = head;
+//
+//        return newHead;
+//    }
+
+    // 第4遍
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        ListNode next = head.next;
-        ListNode newHead = reverseList(next);
+        ListNode pre = null;
+        ListNode cur = head;
 
-        head.next = null;
-        next.next = head;
+        while (cur != null) {
+            // 先记录下cur的下一个节点
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
 
-        return newHead;
+            cur = next;
+        }
+
+        return pre;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
