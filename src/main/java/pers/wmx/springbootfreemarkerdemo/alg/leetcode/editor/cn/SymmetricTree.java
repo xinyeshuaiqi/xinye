@@ -93,6 +93,46 @@ class Solution {
 //    }
 
     // 第2遍
+//    public boolean isSymmetric(TreeNode root) {
+//        if (root == null) {
+//            return true;
+//        }
+//
+//        return checkSymmetric(root, root);
+//    }
+//
+//    private boolean checkSymmetric(TreeNode root1, TreeNode root2) {
+//        Queue<TreeNode> queue = new LinkedList<>();
+//        queue.offer(root1);
+//        queue.offer(root2);
+//
+//        while (!queue.isEmpty()) {
+//            TreeNode u = queue.poll();
+//            TreeNode v = queue.poll();
+//
+//            if (u == null && v == null) {
+//                continue;
+//            }
+//
+//            if (u == null || v == null) {
+//                return false;
+//            }
+//
+//            if (u.val != v.val) {
+//                return false;
+//            }
+//
+//            queue.offer(u.left);
+//            queue.offer(v.right);
+//
+//            queue.offer(u.right);
+//            queue.offer(v.left);
+//        }
+//
+//        return true;
+//    }
+
+    // 第三遍 递归写法
     public boolean isSymmetric(TreeNode root) {
         if (root == null) {
             return true;
@@ -101,36 +141,28 @@ class Solution {
         return checkSymmetric(root, root);
     }
 
-    private boolean checkSymmetric(TreeNode root1, TreeNode root2) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root1);
-        queue.offer(root2);
-
-        while (!queue.isEmpty()) {
-            TreeNode u = queue.poll();
-            TreeNode v = queue.poll();
-
-            if (u == null && v == null) {
-                continue;
-            }
-
-            if (u == null || v == null) {
-                return false;
-            }
-
-            if (u.val != v.val) {
-                return false;
-            }
-
-            queue.offer(u.left);
-            queue.offer(v.right);
-
-            queue.offer(u.right);
-            queue.offer(v.left);
+    private boolean checkSymmetric(TreeNode u, TreeNode v) {
+        if (u == null && v == null) {
+            return true;
         }
 
-        return true;
+        if (u == null || v == null) {
+            return false;
+        }
+
+        if (u.val != v.val) {
+            return false;
+        }
+
+        TreeNode uLeft = u.left;
+        TreeNode uRight = u.right;
+        TreeNode vLeft = v.left;
+        TreeNode vRight = v.right;
+
+        return checkSymmetric(uLeft, vRight)
+                && checkSymmetric(uRight, vLeft);
     }
+
 
 }
 //leetcode submit region end(Prohibit modification and deletion)
