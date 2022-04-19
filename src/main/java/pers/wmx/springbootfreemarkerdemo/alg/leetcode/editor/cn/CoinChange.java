@@ -105,10 +105,170 @@ class Solution {
 
 
         // 记忆化搜索
-        public int coinChange(int[] coins, int amount) {
+//        int [] memo;
+//        public int coinChange(int[] coins, int amount) {
+//            if (coins.length == 0) {
+//                return -1;
+//            }
+//
+//            memo = new int[amount];
+//            return findWay(coins, amount);
+//        }
 
-            return -1;
+        // memo[n] 表示钱币n可以被换取的最少的硬币数，不能换取就为-1
+        // findWay函数的目的是为了找到 amount数量的零钱可以兑换的最少硬币数量，返回其值int
+//        private int findWay(int[] coins, int amount) {
+//            if (amount < 0) {
+//                return -1;
+//            }
+//
+//            if (amount == 0) {
+//                return 0;
+//            }
+//
+//            if (memo[amount - 1] != 0) {
+//                return memo[amount - 1];
+//            }
+//
+//            int min = Integer.MAX_VALUE;
+//            for (int i = 0; i < coins.length; i++) {
+//
+//                //F(S)=F(S−C)+1
+//
+//                int res = findWay(coins, amount - coins[i]);
+//
+//                if (res >= 0 && res < min ) {
+//                    min = res + 1;
+//                }
+//            }
+//
+//            memo[amount - 1] = (min == Integer.MAX_VALUE ? -1 : min);
+//            return memo[amount - 1];
+//        }
+
+
+        // 记忆搜索法 第二遍
+
+        // 记录每个金额需要的个数、不需要重复计算
+//        int []countMem;
+//        public int coinChange(int[] coins, int amount) {
+//            if (coins.length == 0) {
+//                return 0;
+//            }
+//
+//            countMem = new int[amount];
+//            return findAmountWayCount(coins, amount);
+//        }
+//
+//        private int findAmountWayCount(int[] coins, int amount) {
+//            if (amount < 0) {
+//                return -1;
+//            }
+//
+//            if (amount == 0) {
+//                return 0;
+//            }
+//
+//            if (countMem[amount - 1] != 0) {
+//                return countMem[amount - 1];
+//            }
+//
+//            int min = Integer.MAX_VALUE;
+//            for (int i = 0; i < coins.length; i++) {
+//                int res = findAmountWayCount(coins, amount - coins[i]);
+//
+//                if (res >= 0 && res < min) {
+//                    min = res + 1;
+//                }
+//            }
+//
+//            countMem[amount - 1] = (min == Integer.MAX_VALUE ? -1 : min);
+//            return countMem[amount - 1];
+//        }
+
+//         记忆搜索法 第三遍
+//        int []amountCountMemory;
+//        public int coinChange(int[] coins, int amount) {
+//            if (coins.length == 0) {
+//                return 0;
+//            }
+//
+//            amountCountMemory = new int[amount + 1];
+//            return findAmountCountWay(coins, amount);
+//        }
+//
+//        private int findAmountCountWay(int[] coins, int amount) {
+//            if (amount < 0) {
+//                return -1;
+//            }
+//
+//            if (amount == 0) {
+//                return 0;
+//            }
+//
+//            if (amountCountMemory[amount] != 0) {
+//                return amountCountMemory[amount];
+//            }
+//
+//            int min = Integer.MAX_VALUE;
+//            for (int i = 0; i < coins.length; i++) {
+//                int res = findAmountCountWay(coins, amount - coins[i]);
+//
+//                // 找到一个最小的解法
+//                if (res >= 0 && res < min) {
+//                    min = res + 1;
+//                }
+//            }
+//
+//            amountCountMemory[amount] = (min == Integer.MAX_VALUE ? -1 : min);
+//            return amountCountMemory[amount];
+//        }
+
+
+//        public int coinChange(int[] coins, int amount) {
+//            // DP[i]代表凑成金额i所需最小硬币数，-1代表没法凑成
+//            int[] DP = new int[amount + 1];
+//            Arrays.fill(DP, -1);
+//            // 0只需要0个硬币
+//            DP[0] = 0;
+//            // 遍历
+//            for (int i = 1; i <= amount; i++) {
+//                // 对每个硬币，如果符合条件都 DP[i-c] + 1都可以作为 DP[i]候选
+//                for (int c : coins) {
+//                    if (i < c || DP[i - c] == -1) continue;
+//                    if (DP[i] == -1 || DP[i] > DP[i - c] + 1) DP[i] = DP[i - c] + 1;
+//                }
+//            }
+//            return DP[amount];
+//        }
+
+        // 动态规划
+        public int coinChange(int[] coins, int amount) {
+            int []dp = new int[amount + 1];
+            Arrays.fill(dp, -1);
+
+            dp[0] = 0;
+            for (int i = 1; i <= amount; i++) {
+                for (int coin : coins) {
+                    if (coin > i) {
+                        // 当前这个币值太大
+                        continue;
+                    }
+
+                    if (dp[i - coin] == -1) {
+                        // 用了coin后剩下的钱没法组成了
+                        continue;
+                    }
+
+                    if (dp[i] == -1 || dp[i] > dp[i - coin] + 1) {
+                        dp[i] = dp[i - coin] + 1;
+                    }
+                }
+            }
+
+            return dp[amount];
         }
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
