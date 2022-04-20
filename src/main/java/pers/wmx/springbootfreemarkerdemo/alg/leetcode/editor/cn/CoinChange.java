@@ -270,48 +270,124 @@ class Solution {
 //        }
 
         // 动态规划第二遍
-       public int coinChange(int[] coins, int amount) {
-           if (coins.length == 0) {
-               return 0;
-           }
+//       public int coinChange(int[] coins, int amount) {
+//           if (coins.length == 0) {
+//               return 0;
+//           }
+//
+//           if (amount == 0) {
+//               return 0;
+//           }
+//
+//           if (amount < 0) {
+//               return -1;
+//           }
+//
+//           int []amountCountRecord = new int[amount + 1];
+//           Arrays.fill(amountCountRecord, -1);
+//           amountCountRecord[0] = 0;
+//
+//           for (int i = 1; i <= amount; i++) {
+//               // 去看从组装金额1到金额amount分币最少需要多少个硬币
+//               // 自底向上构建 =-=
+//
+//               for(int currentCoin : coins) {
+//                    if (currentCoin > i) {
+//                        // 当前硬币金额太大啦
+//                        continue;
+//                    }
+//
+//                    if (amountCountRecord[i - currentCoin] == -1){
+//                        // 用了当前硬币，但是剩余的硬币没法组装了
+//                        continue;
+//                    }
+//
+//                    if (amountCountRecord[i] == -1
+//                            || amountCountRecord[i] > amountCountRecord[i - currentCoin] + 1) {
+//                        amountCountRecord[i] = amountCountRecord[i - currentCoin] + 1;
+//                    }
+//               }
+//
+//           }
+//
+//           return  amountCountRecord[amount];
+//       }
 
-           if (amount == 0) {
-               return 0;
-           }
+        // 记忆搜索法 第四遍
+//        int [] coinCountMem;
+//        public int coinChange(int[] coins, int amount) {
+//            if (coins.length == 0) {
+//                return -1;
+//            }
+//
+//            coinCountMem = new int[amount + 1];
+//            return findWay(coins, amount);
+//        }
+//
+//        private int findWay(int[] coins, int amount) {
+//            if (amount < 0) {
+//                return -1;
+//            }
+//
+//            if (amount == 0) {
+//                return 0;
+//            }
+//
+//            if (coinCountMem[amount] != 0) {
+//                return coinCountMem[amount];
+//            }
+//
+//            int min = Integer.MAX_VALUE;
+//            for (int i = 0; i < coins.length; i++) {
+//                int res = findWay(coins, amount - coins[i]);
+//
+//                if (res >= 0 && res < min){
+//                    min = res + 1;
+//                }
+//            }
+//
+//            coinCountMem[amount] = (min == Integer.MAX_VALUE ? -1 : min);
+//            return coinCountMem[amount];
+//        }
 
-           if (amount < 0) {
-               return -1;
-           }
+        // dp 第三遍
+        public int coinChange(int[] coins, int amount) {
+            if (coins.length == 0) {
+                return -1;
+            }
 
-           int []amountCountRecord = new int[amount + 1];
-           Arrays.fill(amountCountRecord, -1);
-           amountCountRecord[0] = 0;
+            if (amount < 0) {
+                return -1;
+            }
 
-           for (int i = 1; i <= amount; i++) {
-               // 去看从组装金额1到金额amount分币最少需要多少个硬币
-               // 自底向上构建 =-=
+            if (amount == 0) {
+                return 0;
+            }
 
-               for(int currentCoin : coins) {
-                    if (currentCoin > i) {
-                        // 当前硬币金额太大啦
+            int []amountCountRecord = new int[amount + 1];
+            Arrays.fill(amountCountRecord, -1);
+            amountCountRecord[0] = 0;
+
+            for (int i = 1; i <= amount; i++) {
+                for(int curCoin : coins) {
+                    if (curCoin > i) {
                         continue;
                     }
 
-                    if (amountCountRecord[i - currentCoin] == -1){
-                        // 用了当前硬币，但是剩余的硬币没法组装了
+                    if (amountCountRecord[i - curCoin] == -1) {
                         continue;
                     }
 
                     if (amountCountRecord[i] == -1
-                            || amountCountRecord[i] > amountCountRecord[i - currentCoin] + 1) {
-                        amountCountRecord[i] = amountCountRecord[i - currentCoin] + 1;
+                            || amountCountRecord[i] > amountCountRecord[i - curCoin] + 1) {
+                        amountCountRecord[i] = amountCountRecord[i - curCoin] + 1;
                     }
-               }
+                }
+            }
 
-           }
+            return amountCountRecord[amount];
+        }
 
-           return  amountCountRecord[amount];
-       }
 
     }
 //leetcode submit region end(Prohibit modification and deletion)
