@@ -288,7 +288,8 @@ class Solution {
            amountCountRecord[0] = 0;
 
            for (int i = 1; i <= amount; i++) {
-                // 去看从组装金额1到金额amount分币最少需要多少个硬币
+               // 去看从组装金额1到金额amount分币最少需要多少个硬币
+               // 自底向上构建 =-=
 
                for(int currentCoin : coins) {
                     if (currentCoin > i) {
