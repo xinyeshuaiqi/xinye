@@ -243,31 +243,74 @@ class Solution {
 //        }
 
         // 动态规划
-        public int coinChange(int[] coins, int amount) {
-            int []dp = new int[amount + 1];
-            Arrays.fill(dp, -1);
+//        public int coinChange(int[] coins, int amount) {
+//            int []dp = new int[amount + 1];
+//            Arrays.fill(dp, -1);
+//
+//            dp[0] = 0;
+//            for (int i = 1; i <= amount; i++) {
+//                for (int coin : coins) {
+//                    if (coin > i) {
+//                        // 当前这个币值太大
+//                        continue;
+//                    }
+//
+//                    if (dp[i - coin] == -1) {
+//                        // 用了coin后剩下的钱没法组成了
+//                        continue;
+//                    }
+//
+//                    if (dp[i] == -1 || dp[i] > dp[i - coin] + 1) {
+//                        dp[i] = dp[i - coin] + 1;
+//                    }
+//                }
+//            }
+//
+//            return dp[amount];
+//        }
 
-            dp[0] = 0;
-            for (int i = 1; i <= amount; i++) {
-                for (int coin : coins) {
-                    if (coin > i) {
-                        // 当前这个币值太大
+        // 动态规划第二遍
+       public int coinChange(int[] coins, int amount) {
+           if (coins.length == 0) {
+               return 0;
+           }
+
+           if (amount == 0) {
+               return 0;
+           }
+
+           if (amount < 0) {
+               return -1;
+           }
+
+           int []amountCountRecord = new int[amount + 1];
+           Arrays.fill(amountCountRecord, -1);
+           amountCountRecord[0] = 0;
+
+           for (int i = 1; i <= amount; i++) {
+                // 去看从组装金额1到金额amount分币最少需要多少个硬币
+
+               for(int currentCoin : coins) {
+                    if (currentCoin > i) {
+                        // 当前硬币金额太大啦
                         continue;
                     }
 
-                    if (dp[i - coin] == -1) {
-                        // 用了coin后剩下的钱没法组成了
+                    if (amountCountRecord[i - currentCoin] == -1){
+                        // 用了当前硬币，但是剩余的硬币没法组装了
                         continue;
                     }
 
-                    if (dp[i] == -1 || dp[i] > dp[i - coin] + 1) {
-                        dp[i] = dp[i - coin] + 1;
+                    if (amountCountRecord[i] == -1
+                            || amountCountRecord[i] > amountCountRecord[i - currentCoin] + 1) {
+                        amountCountRecord[i] = amountCountRecord[i - currentCoin] + 1;
                     }
-                }
-            }
+               }
 
-            return dp[amount];
-        }
+           }
+
+           return  amountCountRecord[amount];
+       }
 
     }
 //leetcode submit region end(Prohibit modification and deletion)
