@@ -13,15 +13,12 @@ public class ThreadTest {
         while (true) {
             new Thread(() -> {
                 try {
-                    Thread.sleep(60000L);
+                    Thread.sleep(5000L);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }).start();
             System.out.println("start thread ... " + counter.incrementAndGet());
-
-            // 不变，说明占用的不是这部分空间
-            System.out.println(Runtime.getRuntime().freeMemory());
         }
 
     }
