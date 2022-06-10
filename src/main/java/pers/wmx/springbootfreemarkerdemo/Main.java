@@ -12,5 +12,8 @@ public class Main {
         System.out.println(3 % 5);
         System.out.println(4 % 5);
 
+
+        System.out.println(System.nanoTime());
+        System.out.println(System.currentTimeMillis());
     }
 }
