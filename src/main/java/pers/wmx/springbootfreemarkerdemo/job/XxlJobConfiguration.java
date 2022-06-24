@@ -10,7 +10,7 @@ import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
  * @author wangmingxin03
  * Created on 2021-12-28
  */
-@Configuration
+//@Configuration
 public class XxlJobConfiguration {
     @Value("${xxl.job.admin.addresses}")
     private String adminAddresses;
