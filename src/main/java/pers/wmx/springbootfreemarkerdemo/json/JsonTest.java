@@ -2,6 +2,8 @@ package pers.wmx.springbootfreemarkerdemo.json;
 
 import java.lang.reflect.Field;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * @author wangmingxin03
  * Created on 2022-08-01
@@ -30,5 +32,9 @@ public class JsonTest {
 
         // MyBean{id='A10001', name='Arthur.Zhang', score=100}
         System.out.println(bean);
+
+        MyBean bean1 = JSON.parseObject(json, MyBean.class);
+        System.out.println(bean1);
+
     }
 }
