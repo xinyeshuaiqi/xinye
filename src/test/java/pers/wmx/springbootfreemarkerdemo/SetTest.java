@@ -22,6 +22,8 @@ public class SetTest {
         System.out.println(set1.equals(set2));
         Set<Long> union = Sets.union(set1, set2);
         System.out.println(union.size() == set1.size());
+
+        System.out.println(55 / 10);
     }
 
 }
