@@ -1,5 +1,6 @@
 package pers.wmx.springbootfreemarkerdemo;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -26,5 +27,13 @@ public class MapMain {
         // 如果存在，则返回通过 remappingFunction 重新计算后的值。
         map.computeIfPresent(6, (key,value) -> value + value * 3);
         System.out.println(map);
+
+
+        Map<Integer, Integer> map1 = new HashMap<>();
+        map1.put(1, 2);
+        map1.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, null));
+
+        // Collectors.toMap value不能为null
     }
 }
