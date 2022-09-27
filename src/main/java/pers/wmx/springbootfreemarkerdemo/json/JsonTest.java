@@ -11,6 +11,8 @@ import com.alibaba.fastjson.JSON;
 public class JsonTest {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
         String json = "{ \"id\": \"A10001\", \"name\": \"Arthur.Zhang\", \"score\": 100 }";
+
+        String jsonStr = "{ \"redPackPassword\": \"你好啊\"}";
         String str = json.substring(1, json.length() - 1);
 
         String []filedStr = str.split(",");
