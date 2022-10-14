@@ -12,18 +12,27 @@ import java.util.concurrent.TimeUnit;
  */
 public class FutureTest6 {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
                 throw new IllegalStateException(e);
             }
 
+            System.out.println("future1");
+
             return "haha";
         });
 
-        CompletableFuture<String> thenApplyFuture =
-                future.thenApply(str -> "hehe " + str);
-        System.out.println(thenApplyFuture.get());
+        System.out.println("xixi");
+
+        CompletableFuture<Void> future2 = future1.thenApplyAsync(str -> "future2")
+                .thenAcceptAsync(System.out::println);
+
+        CompletableFuture<Void> future3 = future1.thenApplyAsync(str -> "future3")
+                .thenAcceptAsync(System.out::println);
+
+
+        future2.get();
     }
 }
