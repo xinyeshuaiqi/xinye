@@ -20,6 +20,9 @@ public class TimeTest5 {
 
         System.out.println(localDateTime.format(FMT));
 
+
+        System.out.println(0 % 1253463);
+
     }
 
 }
